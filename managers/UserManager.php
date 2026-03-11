@@ -11,7 +11,7 @@
         
         public function findByEmail(string $email){
             $query = $this -> db -> prepare('
-                SELECT * FROM categories
+                SELECT * FROM users
                 WHERE email = :email
             ');
             
@@ -34,7 +34,7 @@
         
         public function findOne(int $id){
             $query = $this -> db -> prepare('
-                SELECT * FROM categories
+                SELECT * FROM users
                 WHERE id = :id
             ');
             

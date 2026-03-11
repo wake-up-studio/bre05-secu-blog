@@ -1,19 +1,19 @@
 <?php
-/**
- * @author : Gaellan
- * @link : https://github.com/Gaellan
- */
 
-
-abstract class AbstractController
-{
-    protected function render(string $template, array $data) : void
-    {
-        require "templates/layout.phtml";
+    /**
+     * @author : Gaellan
+     * @link : https://github.com/Gaellan
+     */
+    
+    abstract class AbstractController {
+        protected function render(string $template, array $data) : void {
+            require "templates/layout.phtml";
+            var_dump($data);
+        }
+    
+        protected function redirect(string $route) : void {
+            header("Location: $route");
+        }
     }
 
-    protected function redirect(string $route) : void
-    {
-        header("Location: $route");
-    }
-}
+?>

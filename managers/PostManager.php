@@ -13,8 +13,8 @@
             $query = $this -> db -> prepare('
                 SELECT posts.*
                 FROM posts
-                LIMIT 4
                 ORDER BY created_at DESC
+                LIMIT 4
             ');
 
             $query -> execute();
@@ -72,7 +72,7 @@
                 FROM posts
                 JOIN posts_categories
                 ON posts_categories.post_id = posts.id
-                WHERE posts_categories.id = :categoryId
+                WHERE posts_categories.category_id = :categoryId
             ');
 
             $parameters = [

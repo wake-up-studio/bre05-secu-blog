@@ -50,6 +50,14 @@
             $this -> author = $author;
         }
         
+        public function getCategories() : array {
+            return $this->categories;
+        }
+        
+        public function setCategories(array $categories) : void {
+            $this -> categoris = $categories;
+        }
+        
         public function getId() : ?int {
             return $this->id;
         }

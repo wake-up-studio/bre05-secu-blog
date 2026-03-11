@@ -1,0 +1,34 @@
+<main id="post" class="container py-5 px-3">
+    <h1 class="mb-5 text-center"><?= $data["post"] -> getTitle() ?></h1>
+    <h2 class="mt-5 text-center"><?= $data["post"] -> getExcerpt() ?></h2>
+    <article class="py-5">
+        <p><?= $data["post"] -> getContent() ?></p>
+    <section class="my-3">
+        <h3>Comments</h3>
+        <ul class="list-group mt-4">
+            <?php foreach($data["comments"] as $comment) { ?>
+                <li class="list-group-item">
+                    <article>
+                        <h4><?= $comment -> getUser() -> getUsername() ?></h4>
+                        <p>
+                            <?= $comment -> getContent() ?>
+                        </p>
+                    </article>
+                </li>
+            <?php } ?>
+        </ul>
+        <form action="index.php?route=check-comment" method="post">
+            <input type="hidden" name="csrf-token" id="csrf-token" value="abc123dummytoken456def" />
+            <input type="hidden" name="post-id" id="post-id" value="42" />
+            <fieldset class="my-1">
+                <label for="content" class="form-label">
+                    Comment
+                </label>
+                <textarea name="content" id="content" class="form-control"></textarea>
+            </fieldset>
+            <fieldset>
+                <button type="submit" class="btn btn-primary">Send</button>
+            </fieldset>
+        </form>
+    </section>
+</main>

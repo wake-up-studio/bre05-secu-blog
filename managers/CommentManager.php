@@ -52,7 +52,7 @@
             else{
                 return null;
             }
-            return $categories;
+            return $comments;
         }
     }
 ?>

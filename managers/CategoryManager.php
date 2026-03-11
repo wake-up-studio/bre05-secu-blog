@@ -52,7 +52,7 @@
             $query = $this->db->prepare(
             'SELECT categories.* FROM categories
             JOIN posts_categories
-            ON categories.id = posts_categories.category.id
+            ON categories.id = posts_categories.category_id
             WHERE posts_categories.post_id = :id'    
             );
             $parameters = [
