@@ -24,7 +24,7 @@
             $result = $query->fetch(PDO::FETCH_ASSOC);
             
             if($result !== false){
-                $user = new User($result["username"], $result["email"], $result["password"], $result["role"], $result["created_at"], $result["id"]);
+                $user = new User($result["username"], $result["email"], $result["password"], $result["role"], $result["id"]);
                 return $user;
             }
             else{
@@ -47,7 +47,7 @@
             $result = $query->fetch(PDO::FETCH_ASSOC);
             
             if($result !== false){
-                $user = new User($result["username"], $result["email"], $result["password"], $result["role"], $result["created_at"], $result["id"]);
+                $user = new User($result["username"], $result["email"], $result["password"], $result["role"], $result["id"]);
                 return $user;
             }
             else{
@@ -56,6 +56,7 @@
         }
         
         public function create(User $user){
+            $currentDateTime = date('Y-m-d H:i:s');
             
             $query = $this -> db -> prepare("
                 INSERT INTO users (username, email, password, role, created_at) 
@@ -67,7 +68,7 @@
                 "email" => $user -> getEmail(),
                 "password" => $user -> getPassword(),
                 "role" => $user -> getRole(),
-                "createdAt" => $user -> getCreatedAt()
+                "createdAt" => $currentDateTime
             ];
             
             $query -> execute($parameters);

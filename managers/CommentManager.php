@@ -17,8 +17,8 @@
             
             $parameters = [
                 "content" => $comment -> getContent(),
-                "user_id" => $comment -> getUserId(),
-                "post_id" => $comment -> getPostId(),
+                "user_id" => $comment -> getUser() -> getId(),
+                "post_id" => $comment -> getPost() -> getId(),
             ];
             
             $query -> execute($parameters);

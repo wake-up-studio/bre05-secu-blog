@@ -34,9 +34,11 @@
             $postManager = new PostManager();
             $commentManager = new CommentManager();
             
-            if($postManager -> findOne($postId) !== null){
-                $data = ["post" => $postManager -> findOne($postId), 
-                "comments" => $commentManager -> findByPost($postId),
+            $intPostId = intval($postId);
+            
+            if($postManager -> findOne($intPostId) !== null){
+                $data = ["post" => $postManager -> findOne($intPostId), 
+                "comments" => $commentManager -> findByPost($intPostId),
                 ];
                 $this->render("post", $data);
             }
@@ -47,8 +49,23 @@
         }
     
         public function checkComment() : void{
-            $this->redirect("index.php?route=post&post_id={$_POST["post_id"]}");
+            if(isset($_POST["token"]) && isset($_POST["content"]) && isset($_POST["post-id"]) && isset($_SESSION["user"]))
+            {
+                $tokenManager = new CSRFTokenManager();
+    
+                if($tokenManager->validateCSRFToken($_POST["token"]))
+                {
+                    $um = new UserManager();
+                    $pm = new PostManager();
+                    $cm = new CommentManager();
+    
+                    $post = $pm->findOne(intval($_POST["post-id"]));
+                    $user = $um->findOne($_SESSION["user"]);
+                    $comment = new Comment(htmlspecialchars($_POST["content"]), $user, $post);
+                    $cm->create($comment);
+                }
+            }
+            $this->redirect("index.php?route=post&post_id={$_POST["post-id"]}");
         }
     }
-
 ?>

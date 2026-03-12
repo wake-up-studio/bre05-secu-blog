@@ -18,8 +18,8 @@
             <?php } ?>
         </ul>
         <form action="index.php?route=check-comment" method="post">
-            <input type="hidden" name="csrf-token" id="csrf-token" value="abc123dummytoken456def" />
-            <input type="hidden" name="post-id" id="post-id" value="42" />
+            <input type="hidden" name="token" id="token" value="<?= $_SESSION["token"] ?>" />
+            <input type="hidden" name="post-id" id="post-id" value="<?= $data["post"] -> getId() ?>" />
             <fieldset class="my-1">
                 <label for="content" class="form-label">
                     Comment
